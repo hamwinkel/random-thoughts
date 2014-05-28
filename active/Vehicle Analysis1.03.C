@@ -1,4 +1,4 @@
-/* VEHICLE PERFORMANCE ANALYSIS  	v1.03  */
+/* VEHICLE PERFORMANCE ANALYSIS  	v1.03  	by George Winkel*/
 
 #include <stdio.h>
 #include <stdlib.h>
