@@ -85,10 +85,16 @@ const char *getfield(char *line, int num)
 
     for(token = strtok(line, ",");
               token && *token;
-              token = strtok(NULL, ",\n"))
+              token = strtok(NULL, ","))
     {
-         if(! --num)
+        if(! --num)
               return token;
+
+	if(*token == ',' || *token == '\n') {
+		token = NULL;
+		num--;
+		break;
+	}
     }
 
     return NULL;

@@ -52,29 +52,30 @@ int main (void)
          len++;
          tmp = strdup(line);
          if(len == 2) strcpy(sDay, getfield(tmp, 1)); 	// collect start date (as string)
-         free(tmp);
+         //free(tmp);
          tmp = strdup(line);
          strcpy(fDay, getfield(tmp, 1)); 		// collect final date (as string)
-         free(tmp);
+         //free(tmp);
          tmp = strdup(line);
          if(sodm == 0) sodm = atof(getfield(tmp, 2)); 	// collect start odometer
-         free(tmp);
+         //free(tmp);
          tmp = strdup(line);
          fodm = atof(getfield(tmp, 2)); 		// collect final odometer
-         free(tmp);
+         //free(tmp);
          tmp = strdup(line);
          totalgal += atof(getfield(tmp, 3)); 		// sum gallons of fuel
-         free(tmp);
+         //free(tmp);
          tmp = strdup(line);
          fuelcost += atof(getfield(tmp, 4)); 		// sum fuel cost$
-         free(tmp);
+         //free(tmp);
          tmp = strdup(line);
          totoilqt += atof(getfield(tmp, 5)); 		// sum qts. of oil
-         free(tmp);
+         //free(tmp);
          tmp = strdup(line);
          othrcost += atof(getfield(tmp, 7)); 		// sum all other cost$
-         free(tmp);
+         //free(tmp);
     }
+   
 
     fclose(fp); 	// close the file.
 
@@ -82,21 +83,21 @@ int main (void)
     strcpy(line, sDay); 		/* This portion parses two string dates for six integers */
          tmp = strdup(line);
     mo1 = atoi(getfield2(tmp, 1)); 		// collect starting month
-         free(tmp);
+         //free(tmp);
          tmp = strdup(line);
     da1 = atoi(getfield2(tmp, 2)); 		// collect starting day
-         free(tmp);
+         //free(tmp);
          tmp = strdup(line);
     yr1 = atoi(getfield2(tmp, 3)); 		// collect starting year
-         free(tmp);
+         //free(tmp);
 
     strcpy(line, fDay);
          tmp = strdup(line);
     mo2 = atoi(getfield2(tmp, 1)); 		// collect final month
-         free(tmp);
+         //free(tmp);
          tmp = strdup(line);
     da2 = atoi(getfield2(tmp, 2)); 		// collect final day
-         free(tmp);
+         //free(tmp);
          tmp = strdup(line);
     yr2 = atoi(getfield2(tmp, 3)); 		// collect final year
          free(tmp);
