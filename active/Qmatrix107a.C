@@ -7,11 +7,11 @@
 
 #define COUNT 7 	/* Pre-set count of commas to guarantee */
 
-const char *getfield(char *line, int num);
+const char *getfield(const char *line, int num);
 const char *getfield2(char *line, int num);
 char *Line_dresserB47(char *A_String);
 
-char outString[1024] = "";
+char outString[2000] = "";
 int daycounter(int mon0, int day0, int year0, int mon1, int day1, int year1);
 
 
@@ -51,10 +51,10 @@ int main (void) 		/* ===== Main Function ===== */
          exit(EXIT_FAILURE);
     }
 
-    char line[1024], *tmp, 		/* This routine parses a file's lines (records) for its database fields */
+    char line[2000], *tmp, 		/* This routine parses a file's lines (records) for its database fields */
          sDay[15], fDay[15];
     len = 0;
-    while(fgets(line, 1024, fp)) {
+    while(fgets(line, 2000, fp)) {
          len++;
          tmp = strdup(line);
          Line_dresserB47(tmp);
@@ -78,7 +78,7 @@ int main (void) 		/* ===== Main Function ===== */
          totalgal += atof(getfield(tmp, 3)); 		// sum gallons of fuel
          tmp = strdup(line);
          Line_dresserB47(tmp);
-         tmp = outString;
+         tmp = strdup(outString);
          fuelcost += atof(getfield(tmp, 4)); 		// sum fuel cost$
          tmp = strdup(line);
          Line_dresserB47(tmp);
@@ -138,18 +138,20 @@ int main (void) 		/* ===== Main Function ===== */
 }
 
 
-const char *getfield(char *line, int num) 	/* ===== Parse string fields by "," to get column records ===== */
+const char *getfield(const char *line, int num) 	/* ===== Parse string fields by "," to get column records ===== */
 {
-    const char *token;
+    char *token;
+    char *copy = (char *)malloc(strlen(line) + 1);;
 
-    for(token = strtok(line, ",");
+    strcpy(copy, line);
+
+    for(token = strtok(copy, ",");
               token && *token;
               token = strtok(NULL, ",\n"))
     {
          if(! --num)
               return token;
     }
-
     return NULL;
 }
 
@@ -271,7 +273,7 @@ int Isleap(int year) 			/* Identify Leapyears */
 
 char *Line_dresserB47(char *A_String) 	/* Routine to count, add up to 7 commas ',,,,,,,' */
 {
-    char B_String[1024] = "";
+    char B_String[2000] = "";
 
     int len2, i = 0, j = 0;
 
